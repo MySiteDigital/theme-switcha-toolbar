@@ -1,0 +1,19 @@
+{
+    "name": "MySiteDigital/theme-switcha-toolbar",
+    "description": "If you have the Theme Switcha plugin activated, activating this plugin will the theme switcha to every page (fixed to the bottom of a users browser).",
+    "keywords": [
+        "wordpress",
+        "plugin"
+    ],
+    "homepage": "https://github.com/MySiteDigital/theme-switcha-toolbar",
+    "authors": [
+        {
+            "name": "MySite Digital",
+            "homepage": "http://mysite.digital"
+        }
+    ],
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=7.1"
+    }
+}
