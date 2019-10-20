@@ -82,7 +82,8 @@ if ( ! class_exists( 'ThemeSwitchaToolbar' ) ) {
                     #fixed-menu { 
                         top: 0;
                         display: flex;
-                        align-items: center;                        
+                        align-items: center;   
+                        margin: 0;                     
                     }
                     #fixed-menu li {
                         padding: 0 10px;
