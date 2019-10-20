@@ -67,7 +67,7 @@ if ( ! class_exists( 'ThemeSwitchaToolbar' ) ) {
                     }
                     #theme-switcha-toolbar {
                         bottom: 0;
-                        height: 140px;
+                        height: 120px;
                     }
                     #theme-switcha-toolbar #theme-switcha{
                         display: flex;
