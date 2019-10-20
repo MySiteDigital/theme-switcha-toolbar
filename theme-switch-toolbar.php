@@ -35,25 +35,39 @@ if ( ! class_exists( 'ThemeSwitchaToolbar' ) ) {
          */
         public function __construct()
         {
-            add_action( 'init', [ $this, 'init' ] );
-        }
-
-   
-
-        public function init() {
+            add_action( 'init', [ $this, 'register_fixed_menu' ] );
             add_action( 'wp_footer', [ $this, 'output' ] );
         }
 
+        public function register_fixed_menu(){
+             register_nav_menus(
+                [
+                    'fixed-menu' => __( 'Fixed Menu' ),
+                ]
+            );
+        }
+
         public function output(){
+            echo wp_nav_menu( 
+                    [
+                        'menu' => 'fixed-menu',
+                        'menu_id' => 'fixed-menu',
+                        'container' => false
+                    ] 
+                );
             echo 
                 '<style type="text/css">
-                    #theme-switcha-toolbar {
+                    #theme-switcha-toolbar, 
+                    #fixed-menu {
                         position: fixed;
-                        bottom: 0;
-                        height: 150px;
+                        z-index: 99999;
                         width: 100%;
-                        margin-bottom: 15px;
-                        padding-left: 15px;
+                        padding: 10px;
+                        background: black;
+                    }
+                    #theme-switcha-toolbar {
+                        bottom: 0;
+                        height: 140px;
                     }
                     #theme-switcha-toolbar #theme-switcha{
                         display: flex;
@@ -61,8 +75,18 @@ if ( ! class_exists( 'ThemeSwitchaToolbar' ) ) {
                         margin-top: 0;
                     }
                     #theme-switcha-toolbar #theme-switcha a{
-                        min-width: 150px;
+                        width: 120px;
+                        min-width: 120px;
                         margin-bottom: 0;
+                    }
+                    #fixed-menu { 
+                        top: 0;
+                        display: flex;
+                        align-items: center;                        
+                    }
+                    #fixed-menu li {
+                        padding: 0 10px;
+                        list-style: none;
                     }
                 </style>
                 <div id="theme-switcha-toolbar">' . 
