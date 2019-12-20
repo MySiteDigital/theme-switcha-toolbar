@@ -8,11 +8,11 @@ body {
     z-index: 9999;
 }
 #theme-switcha-toolbar  {
-    top: 0;
+    top: 0px;
     width: 100%;
 }
 #theme-switcha-toolbar #theme-switcha{
-    top: 60;
+    top: 60px;
     right: -280px;
     z-index: 999;
     display: flex;

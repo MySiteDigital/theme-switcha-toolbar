@@ -16,7 +16,7 @@ var themeSwitchaToolbar = {
 
     button: jQuery('#theme-switcha-toggle'),
 
-    navigtionHolder: jQuery('#theme-switcha'),
+    navigtionHolder: jQuery('#theme-switcha-toolbar #theme-switcha'),
 
     init: function () {
         themeSwitchaToolbar.addListeners();
@@ -26,9 +26,9 @@ var themeSwitchaToolbar = {
         themeSwitchaToolbar.button.click(
             function () {
                 themeSwitchaToolbar.button.toggleClass('open');
-                let rightPos = 0;
+                let rightPos = '-280px';
                 if (themeSwitchaToolbar.button.hasClass('open')) {
-                    rightPos = '-280px';
+                    rightPos = '-0px';
                 }
                 themeSwitchaToolbar.animateNav(rightPos);
             }
@@ -37,8 +37,9 @@ var themeSwitchaToolbar = {
 
     animateNav: function (rightPos) {
         console.log(themeSwitchaToolbar.navigtionHolder);
+        console.log(rightPos);
         
-        themeSwitchaToolbar.button.animate(
+        themeSwitchaToolbar.navigtionHolder.animate(
             {
                 right: rightPos
             },
