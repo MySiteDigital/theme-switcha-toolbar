@@ -21,12 +21,14 @@ class ThemeSwitchaToolbar {
     use AssetsTrait;
 
     protected $frontend_styles = [
+        'type' => 'plugin',
         'post_types' => [ 'all' ],
         'handle' => 'theme-switcha-toolbar',
         'src' => 'theme-switcha-toolbar.css',
     ];
 
     protected $frontend_scripts = [
+        'type' => 'plugin',
         'post_types' => [ 'all' ],
         'handle' => 'theme-switcha-toolbar',
         'src' => 'theme-switcha-toolbar.js',

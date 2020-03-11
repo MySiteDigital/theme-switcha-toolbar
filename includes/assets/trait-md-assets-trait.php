@@ -50,7 +50,7 @@ if ( ! trait_exists ( 'MySiteDigital\Assets\AssetsTrait' ) ) {
             if( property_exists( self::class, 'frontend_styles' ) ){
                 wp_register_style(
                     $this->frontend_styles[ 'handle' ],
-                    $this->get_asset_location( $this->frontend_styles['src'] ),
+                    $this->get_asset_location( $this->frontend_styles['src'], $this->frontend_styles['type'] ),
                     [],
                     $this->get_asset_version( $this->frontend_styles['src'] )
                 );
@@ -135,25 +135,44 @@ if ( ! trait_exists ( 'MySiteDigital\Assets\AssetsTrait' ) ) {
             }
         }
         
-        public function get_asset_location( $filename, $dir = false ){
+ 
+
+        public function get_asset_location( $filename, $type = '', $dir = false ){
             
-            $base = plugin_dir_url( __FILE__ );
-            
+            $base = self::base_url( $type );
+
             if( $dir ){
-                $base = plugin_dir_path( __FILE__ );
+                $base = self::base_path( $type );
             }
 
-            $base = str_replace( '/includes/assets', '', $base );
+            if( self::is_plugin( $type ) ){
+                $base = str_replace( '/includes/assets', '', $base );
+            }
+
 
             $type = substr( strrchr( $filename, '.' ), 1 );
 
-            return $base . 'assets/' . $type . '/' . $filename;
+            $asset_location = $base . '/assets/' . $type . '/' . $filename;
+
+            return $asset_location;
             
         }
 
-        public function get_asset_version( $filename ){
-            return @filemtime( $this->get_asset_location( $filename, true ) );
+        public function get_asset_version( $filename, $type = ''){
+            return @filemtime( self::get_asset_location( $filename, $type, true ) );
         
+        }
+
+        public static function base_path( $type ){
+            return self::is_plugin( $type ) ? plugin_dir_path( __FILE__ ) : get_stylesheet_directory();
+        }
+
+        public static function base_url( $type ){
+            return self::is_plugin( $type ) ? plugin_dir_url( __FILE__ ) : get_stylesheet_directory_uri();;
+        }
+
+        public static function is_plugin( $type ){
+            return $type === 'theme' ? false : true;
         }
     }
 }
