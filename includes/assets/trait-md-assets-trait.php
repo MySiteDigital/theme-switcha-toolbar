@@ -181,5 +181,15 @@ if ( ! trait_exists ( 'MySiteDigital\Assets\AssetsTrait' ) ) {
         public static function is_plugin( $type ){
             return $type === 'theme' ? false : true;
         }
+
+        public function is_webpack_dev_server(){
+            if( ! defined( 'WP_ENV' ) || WP_ENV !== 'dev' ){
+                return false;
+            }
+
+            $socket = @fsockopen( 'localhost', 3000, $errno, $errstr, 1 );
+
+            return $socket ? true : false;
+        }
     }
 }
